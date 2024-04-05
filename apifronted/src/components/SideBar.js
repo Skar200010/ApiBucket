@@ -1,19 +1,13 @@
-import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-const SideBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleDrawer = () => {
-    setIsOpen(!isOpen);
-  };
-
+const SideBar = ({ isOpen, toggleSideBar }) => {
   return (
     <div className="relative min-h-screen">
-      <div className="justify-between items-center p-4 bg-gray-800 text-white">
+      <div className="justify-between items-center fixed p-4 bg-gray-800 text-white ">
         <button 
-          onClick={toggleDrawer}
+          onClick={toggleSideBar}
           className="text-white focus:outline-none focus:ring-2 focus:ring-white"
         >
           {isOpen ? (
@@ -23,14 +17,13 @@ const SideBar = () => {
           )}
         </button>
       </div>
-      {/* Sidebar */}
       <div
         className={`bg-gray-900 text-white w-64 h-full fixed top-0 left-0 rounded-r-xl transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <button
-          onClick={toggleDrawer}
+          onClick={toggleSideBar}
           className="absolute top-0 right-0 m-4 text-white focus:outline-none focus:ring-2 focus:ring-white"
         >
           <FontAwesomeIcon icon={faTimes} />
@@ -59,7 +52,6 @@ const SideBar = () => {
           </li>
         </ul>
       </div>
-      {/* Content */}
     </div>
   );
 };

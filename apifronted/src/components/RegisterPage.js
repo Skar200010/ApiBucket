@@ -13,7 +13,6 @@ const RegisterPage = () => {
   });
   const navigate = useNavigate();
 
-
   const [passwordValidation, setPasswordValidation] = useState({
     length: false,
     uppercase: false,
@@ -173,30 +172,22 @@ const RegisterPage = () => {
             <div className="flex items-center mt-2 space-x-2">
               <ul className="list-disc list-inside">
                 <li
-                  className={`text-${
-                    passwordValidation.length ? "green" : "red"
-                  }-500`}
+                  style={{ color: passwordValidation.length ? "green" : "red" }}
                 >
                   {passwordValidation.length ? "✓" : "✗"} 8 characters
                 </li>
                 <li
-                  className={`text-${
-                    passwordValidation.uppercase ? "green" : "red"
-                  }-500`}
+                  style={{ color: passwordValidation.uppercase ? "green" : "red" }}
                 >
                   {passwordValidation.uppercase ? "✓" : "✗"} Uppercase
                 </li>
                 <li
-                  className={`text-${
-                    passwordValidation.lowercase ? "green" : "red"
-                  }-500`}
+                  style={{ color: passwordValidation.lowercase ? "green" : "red" }}
                 >
                   {passwordValidation.lowercase ? "✓" : "✗"} Lowercase
                 </li>
                 <li
-                  className={`text-${
-                    passwordValidation.specialCharacter ? "green" : "red"
-                  }-500`}
+                 style={{ color: passwordValidation.specialCharacter ? "green" : "red" }}
                 >
                   {passwordValidation.specialCharacter ? "✓" : "✗"} Special
                   Character
@@ -215,7 +206,6 @@ const RegisterPage = () => {
               {loading ? "Registering..." : "Register"}
             </button>
           </div>
-         
 
           {error && <p className="text-red-500 mt-2">{error}</p>}
         </form>

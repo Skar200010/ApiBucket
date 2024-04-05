@@ -6,7 +6,7 @@ const DocumentationPage = () => {
       <div className="min-h-screen flex">
         <div className="bg-gray-600 text-white p-4 w-1/6">
         <ul className="space-y-2">
-  <li className="mb-2 p-2">
+  <li className="mb-2 p-2  hover:bg-gray-800 transition-transform transform hover:scale-110">
     <Link
       to="#overview"
       className="text-white hover:text-gray-300 cursor-pointer transition duration-300 flex "
@@ -14,7 +14,7 @@ const DocumentationPage = () => {
       Overview
     </Link>
   </li>
-  <li className="mb-2 p-2 ">
+  <li className="mb-2 p-2  hover:bg-gray-800 transition-transform transform hover:scale-110">
     <Link
       to="#requirements"
       className="text-white hover:text-gray-300 cursor-pointer transition duration-300 flex"
@@ -22,7 +22,7 @@ const DocumentationPage = () => {
       Requirements
     </Link>
   </li>
-  <li className="mb-2 p-2">
+  <li className="mb-2 p-2  hover:bg-gray-800 transition-transform transform hover:scale-110">
     <Link
       to="#installation"
       className="text-white hover:text-gray-300 cursor-pointer transition duration-300 flex"
@@ -30,7 +30,7 @@ const DocumentationPage = () => {
       Installation
     </Link>
   </li>
-  <li className="mb-2 p-2">
+  <li className="mb-2 p-2  hover:bg-gray-800 transition-transform transform hover:scale-110">
     <Link
       to="#description"
       className="text-white hover:text-gray-300 cursor-pointer transition duration-300 flex"
@@ -54,11 +54,10 @@ const DocumentationPage = () => {
             <p>
               Before you begin, make sure your system meets the following requirements:
             </p>
-            <ul>
+            <ol className=' ml-10 list-decimal'>
               <li>Operating System: Any</li>
               <li>Browser Compatibility: Chrome, Firefox, Safari</li>
-              {/* Add more requirements as needed */}
-            </ul>
+            </ol>
           </section>
   
           <section id="installation">

@@ -1,7 +1,7 @@
 import React, { useState , useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faChevronUp, faChevronDown ,faBook, faUser, faInfoCircle, faHouse} from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -38,7 +38,13 @@ const Navbar = () => {
     <div>
       <nav className="bg-gray-800 p-4">
         <div className="container mx-auto flex justify-between items-center">
-          <div className="text-white font-bold text-xl  transform hover:scale-x-110">API Bucket</div>
+            <button
+            className="text-white font-bold text-xl "
+            onClick={() => handleNavigation ('/')}
+            >
+              <FontAwesomeIcon icon={faHouse} className='mr-2' />
+            </button>
+            <div className="text-white font-bold text-xl transform hover:scale-x-110">API Bucket</div>
           <div className="relative w-3/4">
             <button
               onClick={toggleDropdown}
@@ -52,27 +58,30 @@ const Navbar = () => {
             </button>
             {isDropdownOpen && (
               <ul className="absolute mt-2  w-48 bg-gray-800 text-white rounded-md shadow-lg z-10">
-                <li>
+                <li className='block px-4 py-2 text-sm hover:bg-gray-700'>
                   <button
                     onClick={() => handleNavigation('/Documentation')}
-                    className="block px-4 py-2 text-sm hover:bg-gray-700"
+                    className=""
                   >
+                     <FontAwesomeIcon icon={faBook} className="mr-3" />
                     Documentation
                   </button>
                 </li>
-                <li>
+                <li className='block px-4 py-2 text-sm hover:bg-gray-700'>
                   <button
                     onClick={() => handleNavigation('/Welcome')}
-                    className="block px-4 py-2 text-sm hover:bg-gray-700"
+                    className=""
                   >
+                    <FontAwesomeIcon icon={faUser} className='mr-3' />
                     MyPage
                   </button>
                 </li>
-                <li>
+                <li className='block px-4 py-2 text-sm hover:bg-gray-700'>
                   <button
                     onClick={() => handleNavigation('/About')}
-                    className="block px-4 py-2 text-sm hover:bg-gray-700"
+                    className=""
                   >
+                    <FontAwesomeIcon icon={faInfoCircle} className='mr-3' />
                     About
                   </button>
                 </li>

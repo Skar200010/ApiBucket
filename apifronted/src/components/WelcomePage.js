@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import SideBar from './SideBar';
+import CodeSnippetViewer from './codeviewer';
 
 const isTokenExpired = () => {
   const token = localStorage.getItem('token');
@@ -14,11 +15,12 @@ const isTokenExpired = () => {
 };
 
 function WelcomePage() {
-
   const [userProfile, setUserProfile] = useState({});
   const [loading, setLoading] = useState(true);
+  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
 
   const navigate = useNavigate();
+
   useEffect(() => {
     const checkSession = () => {
       if (isTokenExpired()) {
@@ -48,13 +50,13 @@ function WelcomePage() {
       } catch (error) {
         console.error('Error fetching user data:', error.message);
       } finally {
-        setLoading(false); // Set loading to false once the request is complete
+        setLoading(false);
       }
     };
 
     fetchUserProfile();
   }, []);
-  
+
   const handleLogout = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -75,35 +77,39 @@ function WelcomePage() {
     }
   };
 
+  const toggleSideBar = () => {
+    setIsSideBarOpen(!isSideBarOpen);
+  };
+
   if (loading) {
-    return <p>Loading...</p>; // Show a loading message while fetching user profile
+    return <p>Loading...</p>;
   }
 
   return (
-    <div className="relative">
-      <SideBar></SideBar>
-      <div className="absolute top-5 right-5">
-        <div className=" w-56 bg-white rounded-lg shadow-md overflow-hidden">
-          <div className="px-6 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-center">
-            <div className="text-white text-3xl font-semibold">{userProfile.username}</div>
-            <div className="text-sm text-gray-200">{userProfile.email}</div>
-          </div>
-          <div className="px-6 py-4">
-            <button
-              className="w-full px-4 py-2 mt-4 text-sm font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white"
-              onClick={handleLogout}
-            >
-              <FontAwesomeIcon icon={faSignOutAlt} className="mr-2" />
-              Logout
-            </button>
+    <div className="relative flex">
+      <SideBar isOpen={isSideBarOpen} toggleSideBar={toggleSideBar} />
+      <div className={`flex-grow transition-all duration-300 ${isSideBarOpen ? 'ml-64' : 'ml-0'}`}>
+        <CodeSnippetViewer />
+        <div className="absolute top-5 right-5">
+          <div className=" w-56 bg-white rounded-lg shadow-md overflow-hidden fixed right-5">
+            <div className="px-6 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-center">
+              <div className="text-white text-3xl font-semibold">{userProfile.username}</div>
+              <div className="text-sm text-gray-200">{userProfile.email}</div>
+            </div>
+            <div className="px-6 py-4">
+              <button
+                className="w-full px-4 py-2 mt-4 text-sm font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white"
+                onClick={handleLogout}
+              >
+                <FontAwesomeIcon icon={faSignOutAlt} className="mr-2" />
+                Logout
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
-  
-};
+}
 
-
-export default WelcomePage
-
+export default WelcomePage;

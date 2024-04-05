@@ -13,7 +13,7 @@ const apicodeService = async (bodyData) => {
       codeSnippet,
     });
 
-    // Save the new ApiCode document
+    
     const savedApiCode = await newApiCode.save();
 
     return savedApiCode;
@@ -23,4 +23,6 @@ const apicodeService = async (bodyData) => {
   }
 };
 
-module.exports = {apicodeService}
+
+
+module.exports = {apicodeService }
