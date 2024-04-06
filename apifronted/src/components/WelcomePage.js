@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUser ,faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import SideBar from './SideBar';
 import CodeSnippetViewer from './codeviewer';
@@ -18,6 +18,12 @@ function WelcomePage() {
   const [userProfile, setUserProfile] = useState({});
   const [loading, setLoading] = useState(true);
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+   const [isOpen, setIsOpen] = useState(false);
+
+  const togglePopover = () => {
+    setIsOpen(!isOpen);
+  };
+
 
   const navigate = useNavigate();
 
@@ -90,7 +96,11 @@ function WelcomePage() {
       <SideBar isOpen={isSideBarOpen} toggleSideBar={toggleSideBar} />
       <div className={`flex-grow transition-all duration-300 ${isSideBarOpen ? 'ml-64' : 'ml-0'}`}>
         <CodeSnippetViewer />
-        <div className="absolute top-5 right-5">
+        <div className="absolute top-5 right-5 ">
+        <button onClick={togglePopover} className="text-white focus:outline-none">
+        <FontAwesomeIcon icon={faUser} className=" text-3xl bg-gray-800 p-2 rounded-full" />
+      </button>
+      {isOpen && (
           <div className=" w-56 bg-white rounded-lg shadow-md overflow-hidden fixed right-5">
             <div className="px-6 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-center">
               <div className="text-white text-3xl font-semibold">{userProfile.username}</div>
@@ -106,6 +116,7 @@ function WelcomePage() {
               </button>
             </div>
           </div>
+          )} 
         </div>
       </div>
     </div>

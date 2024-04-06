@@ -30,8 +30,8 @@ const SideBar = ({ isOpen, toggleSideBar }) => {
         </button>
 
         <div className="flex items-center justify-center my-4">
-          <img src='logo12.jpg' alt="Brand Logo" className=" h-8 " />
-          <span className="text-lg font-bold">Skar Private ltd</span>
+          <img src='logo12.jpg' alt="Brand Logo" className=" h-8 mr-3" />
+          <span className=" text-sm">Skar Private ltd</span>
         </div>
 
         <ul className="p-4 mt-6">
